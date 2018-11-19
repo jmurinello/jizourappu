@@ -38,6 +38,7 @@ class Editor extends Component {
               placeholder="Insert text in Japanese..."
               onInput={() => this.handleEditor()}
               ref={(c) => this.textarea = c}
+              maxlength="50"
             />
           </EditorBody>
         </EditorContent>
