@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
-import { NewTextContainer } from './NewText.style.js';
+import NewTextContainer from './NewText.style';
 import Editor from './Editor';
 import Reader from './Reader/Reader';
 import BottomMenu from './BottomMenu';
-import * as style from './Buttons';
+import * as Buttons from './Buttons';
 
 const {
   StartReadingButton,
   NewTextButtons,
-} = style;
+} = Buttons;
 
 class NewText extends Component {
   constructor(props) {
@@ -18,30 +18,30 @@ class NewText extends Component {
     this.handleEditorClick = this.handleEditorClick.bind(this);
     this.handleReaderClick = this.handleReaderClick.bind(this);
     this.state = {
-      hasInput: false,
+      hasInput: true,
       isReading: false,
-      editorText: '',
+      editorText: '親譲りの無鉄砲で小供の時から損ばかりしている',
       readerText: [],
     };
   }
 
-  handleInput({input, text}) {
+  handleInput({ input, text }) {
     this.setState({
       hasInput: input,
       editorText: text,
     });
   }
 
-  async handleEditorClick() {
-    event.preventDefault();
-    const data =
-      await fetch('/api/tokens', {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: this.state.editorText }),
-      })
-      .then((res) => res.json())
-      .then((tokens) => tokens);
+  async handleEditorClick(e) {
+    e.preventDefault();
+    const { editorText } = this.state;
+    const data = await fetch('/api/tokens', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: editorText }),
+    })
+      .then(res => res.json())
+      .then(tokens => tokens);
 
     this.setState({
       isReading: true,
@@ -51,7 +51,7 @@ class NewText extends Component {
 
   handleReaderClick() {
     this.setState({
-      hasInput: false,
+      hasInput: true,
       isReading: false,
       editorText: '',
       readerText: [],
@@ -60,28 +60,38 @@ class NewText extends Component {
 
   render() {
     let newText;
+    const {
+      handleReaderClick,
+      handleEditorClick,
+      handleInput,
+    } = this;
+    const {
+      isReading,
+      readerText,
+      hasInput,
+    } = this.state;
 
-    if (this.state.isReading) {
+    if (isReading) {
       newText = {
         reader: {
-          content: <Reader readerText={this.state.readerText} />,
-          buttons: <NewTextButtons onClick={this.handleReaderClick}/>,
+          content: <Reader readerText={readerText} />,
+          buttons: <NewTextButtons onClick={handleReaderClick} />,
         },
       };
     } else {
       newText = {
         editor: {
-          content: <Editor handleInput={this.handleInput} />,
-          buttons: <StartReadingButton onClick={this.handleEditorClick} isDisabled={!this.state.hasInput} />,
+          content: <Editor handleInput={handleInput} />,
+          buttons: <StartReadingButton onClick={handleEditorClick} isDisabled={!hasInput} />,
         },
       };
     }
 
     return (
       <NewTextContainer>
-        {this.state.isReading ? newText.reader.content : newText.editor.content}
+        {isReading ? newText.reader.content : newText.editor.content}
         <BottomMenu>
-          {this.state.isReading ? newText.reader.buttons : newText.editor.buttons}
+          {isReading ? newText.reader.buttons : newText.editor.buttons}
         </BottomMenu>
       </NewTextContainer>
     );

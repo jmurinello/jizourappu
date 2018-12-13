@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+/* eslint no-use-before-define: 0 */
+
 export const MenuContainer = styled.div`
   position: fixed;
   bottom: 0;

@@ -33,6 +33,7 @@ module.exports = require('./webpack.config.base')({
         secure: false
       },
     },
+    stats: 'errors-only',
   },
   devtool: 'eval-source-map',
   performance: {

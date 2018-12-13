@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import { AppContainer } from './App.style';
-import { GlobalStyle } from './Global.style';
+import AppContainer from './App.style';
+import GlobalStyle from './Global.style';
 import NewText from './NewText';
 
 render(
@@ -10,5 +10,5 @@ render(
     <GlobalStyle />
     <NewText />
   </AppContainer>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

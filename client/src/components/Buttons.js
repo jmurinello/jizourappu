@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as style from './Buttons.style';
 
 const {
@@ -8,20 +9,31 @@ const {
   NewTextButtonContainer,
 } = style;
 
-export function StartReadingButton(props) {
+export function StartReadingButton({ onClick, isDisabled }) {
   return (
     <ButtonLightGreen
-      onClick={props.onClick}
-      disabled={props.isDisabled}
-    >Start Reading</ButtonLightGreen>
+      onClick={onClick}
+      disabled={isDisabled}
+    >
+      Start Reading
+    </ButtonLightGreen>
   );
 }
 
-export function NewTextButtons(props) {
+StartReadingButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
+};
+
+export function NewTextButtons({ onClick }) {
   return (
     <NewTextButtonContainer>
-      <ButtonGrey onClick={props.onClick}>Clear</ButtonGrey>
-      <ButtonBlue disabled={true}>Add To Library</ButtonBlue>
+      <ButtonGrey onClick={onClick}>Clear</ButtonGrey>
+      <ButtonBlue disabled>Add To Library</ButtonBlue>
     </NewTextButtonContainer>
   );
 }
+
+NewTextButtons.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};

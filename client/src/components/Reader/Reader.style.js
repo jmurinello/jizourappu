@@ -19,10 +19,10 @@ export const ReaderContent = styled.div`
 
 export const ReaderText = styled.div`
   margin-top: 18px;
-  white-space: pre-wrap`
-;
+  white-space: pre-wrap
+`;
 
 export const ParagraphsContainer = styled.div`
   display: flex;
   flex-direction: column;
-;`
+`;

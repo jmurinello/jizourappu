@@ -38,4 +38,13 @@ module.exports = require('./webpack.config.base')({
       hashDigestLength: 20,
     }),
   ],
+  stats: {
+    modules: false,
+    errors: true,
+    warnings: true,
+    timings: false,
+    builtAt: false,
+    entrypoints: false,
+    children: false,
+  },
 });

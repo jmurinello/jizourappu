@@ -41,6 +41,7 @@ module.exports = options => ({
   },
   devServer: options.devServer,
   devtool: options.devtool,
+  stats: options.stats,
   target: 'web',
   performance: options.performance || {},
 });

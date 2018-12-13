@@ -1,28 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import * as style from './ReaderSentence.style';
+import uuidv4 from 'uuid/v4';
+import ReaderSentenceContainer from './ReaderSentence.style';
 import ReaderWord from './ReaderWord';
 
-const {
-  ReaderSentenceContainer,
-} = style;
+function ReaderSentence({ sentence }) {
+  const words = sentence;
 
-class ReaderSentence extends Component {
-  static propTypes = {
-    sentence: PropTypes.array.isRequired,
-  };
-
-  render() {
-    const words = this.props.sentence;
-
-    return (
-      <ReaderSentenceContainer>
-        {words.map((word, index) => {
-          return <ReaderWord word={word} key={`word-${index}`} />
-        })}
-      </ReaderSentenceContainer>
-    );
-  }
+  return (
+    <ReaderSentenceContainer>
+      {words.map(word => (
+        <ReaderWord word={word} key={uuidv4()} />
+      ))}
+    </ReaderSentenceContainer>
+  );
 }
+
+ReaderSentence.propTypes = {
+  sentence: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 export default ReaderSentence;

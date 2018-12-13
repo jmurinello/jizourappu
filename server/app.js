@@ -5,9 +5,9 @@ async function getTokens(req, res) {
   try {
     const response = await kuromoji.tokenize(req.body.content);
     res.json(response);
-  } catch(e) {
+  } catch (e) {
     res.status(500);
-    res.send(error);
+    res.send(e);
   }
 }
 

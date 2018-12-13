@@ -1,23 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import * as style from './ReaderWord.style';
+import ReaderWord from './ReaderWord.style';
 
-const {
-  ReaderWord,
-} = style;
-
-class ReaderSentence extends Component {
-  static propTypes = {
-    word: PropTypes.string.isRequired,
-  };
-
-  render() {
-    const word = this.props.word;
-
-    return (
-      <ReaderWord>{word}</ReaderWord>
-    );
-  }
+function ReaderSentence({ word }) {
+  return <ReaderWord>{word}</ReaderWord>;
 }
+
+ReaderSentence.propTypes = {
+  word: PropTypes.string.isRequired,
+};
 
 export default ReaderSentence;

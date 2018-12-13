@@ -19,14 +19,15 @@ class Editor extends Component {
   }
 
   handleEditor() {
+    const { handleInput } = this.props;
     this.textarea.style.height = '84px';
-    this.textarea.style.height = this.textarea.scrollHeight + 'px';
+    this.textarea.style.height = `${this.textarea.scrollHeight}px`;
 
     if (this.textarea.value.length === 0) {
-      return this.props.handleInput({ input: false, text: '' });
+      return handleInput({ input: false, text: '' });
     }
 
-    this.props.handleInput({ input: true, text: this.textarea.value });
+    return handleInput({ input: true, text: this.textarea.value });
   }
 
   render() {
@@ -37,8 +38,9 @@ class Editor extends Component {
             <TextArea
               placeholder="Insert text in Japanese..."
               onInput={() => this.handleEditor()}
-              ref={(c) => this.textarea = c}
-              maxlength="50"
+              ref={c => this.textarea = c} // eslint-disable-line no-return-assign
+              maxLength="50"
+              defaultValue="親譲りの無鉄砲で小供の時から損ばかりしている"
             />
           </EditorBody>
         </EditorContent>

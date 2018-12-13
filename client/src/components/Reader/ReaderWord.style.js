@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ReaderWord = styled.span`
+const ReaderWord = styled.span`
   cursor: pointer;
   position: relative;
   border-radius: 4px;
@@ -9,3 +9,5 @@ export const ReaderWord = styled.span`
     background: #a6f7ff;
   }
 `;
+
+export default ReaderWord;
