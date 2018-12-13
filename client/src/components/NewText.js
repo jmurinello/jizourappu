@@ -53,7 +53,7 @@ class NewText extends Component {
     this.setState({
       hasInput: true,
       isReading: false,
-      editorText: '',
+      editorText: '親譲りの無鉄砲で小供の時から損ばかりしている',
       readerText: [],
     });
   }
