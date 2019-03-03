@@ -2,3 +2,4 @@ node_modules
 maven-archiver
 maven-status
 backup
+dist
